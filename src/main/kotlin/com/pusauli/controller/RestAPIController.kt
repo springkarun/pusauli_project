@@ -1,13 +1,13 @@
 package com.pusauli.controller
 
 import com.pusauli.model.RegistationModel
+import com.pusauli.service.CategoryShopService
 import com.pusauli.service.RegistationService
 import com.pusauli.service.RegisterShopService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import java.io.IOException
 
 
 @RestController
@@ -20,6 +20,9 @@ class RestAPIController {
 
     @Autowired
     private var registerShopService: RegisterShopService? = null
+
+   @Autowired
+    private var categoryShopService: CategoryShopService? = null
 
 
     @PostMapping("/student_registation")
@@ -40,7 +43,8 @@ class RestAPIController {
 
 
     @PostMapping("/register_shop")
-    private fun saveRegisterShop(@RequestParam("shopId") shopId :String,
+    private fun saveRegisterShop(@RequestParam("categoryId")categoryId :String,
+                                 @RequestParam("shopId") shopId :String,
                                  @RequestParam("shopName") shopName :String,
                                  @RequestParam("shopReg") shopReg :String,
                                  @RequestParam("shopAvatar") shopAvatar: MultipartFile,
@@ -58,10 +62,13 @@ class RestAPIController {
                                  @RequestParam("ownerAvatar") ownerAvatar :MultipartFile,
                                  @RequestParam("colorCode") colorCode :String,
                                  @RequestParam("reg_date") reg_date :String): Any {
-        return registerShopService!!.saveRegisterShop(shopId, shopName, shopReg, shopAvatar, shopEmail, shopMobile,
+        return registerShopService!!.saveRegisterShop(categoryId,shopId, shopName, shopReg, shopAvatar, shopEmail, shopMobile,
                 shopAddress, shopNearst, shopTime, shopRating, shopLatitude, shopLongitude, ownerName, ownerEmail,
                 ownerContact, ownerAvatar, colorCode, reg_date)
     }
+
+
+
 
 
     @GetMapping("/images/{path}")
@@ -74,6 +81,16 @@ class RestAPIController {
     fun showAllShop():Any=registerShopService!!.showAllShop()
 
 
+
+    @PostMapping("/create_categoryShop")
+    private fun saveCategoryShop(@RequestParam("categoryId") categoryId :String,
+                                 @RequestParam("categoryName") categoryName :String): Any {
+        return categoryShopService!!.saveCategoryShop(categoryId, categoryName)
+    }
+
+
+    @GetMapping("/categoryShopAll")
+    fun CategoryAllShop():Any=categoryShopService!!.showAllCategory()
 
 
 

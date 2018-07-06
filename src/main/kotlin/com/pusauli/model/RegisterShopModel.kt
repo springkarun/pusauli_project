@@ -9,6 +9,7 @@ import java.io.Serializable
 data class RegisterShopModel(
         @Id
         var id:Int = 0,
+        var categoryId:String? = null,
         var shopId:String? = null,
         var shopName:String? = null,
         var shopReg:String? = null,

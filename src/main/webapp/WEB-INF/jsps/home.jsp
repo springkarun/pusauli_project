@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>Spring Boot Example</title>
+<title>DIGITAL PUSAULI REGISTER</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script
@@ -15,55 +15,92 @@
 </head>
 <body>
 	<div class="container" ng-app="app">
-		<h1>pusauli School Registation Form</h1>
+		<h1>DIGITAL PUSAULI REGISTER </h1>
 
 		<div class="row">
-			<div ng-controller="postController" class="col-md-3">
+
+			<div ng-controller="shopRegisterController" class="col-md-3">
+
+
 				<form name="customerForm" ng-submit="submitForm()">
 
-
-					<label>Roll No : </label>
-					<input type="text" name="rollNo"	class="form-control" ng-model="rollNo" />
-
-					<label>Full Name :</label>
-					<input type="text" name="name" class="form-control" ng-model="name" />
-
-			    	<label>Email :</label>
-					<input type="text" name="email"	class="form-control" ng-model="email" />
-
-					<label>Mobile :</label>
-					<input type="text" name="mobile" class="form-control" ng-model="mobile" />
-
-					<label>Password :</label>
-					<input type="text" name="passwords" class="form-control" ng-model="passwords" />
+					<label>Select Shop Category : </label>
+						<select name="cateSelect" ng-model="cateSelect" class="form-control" >
+							<option value="">--Select Category--</option>
+							<option ng-repeat="option in arrlists" value="{{option.categoryId}}">{{option.categoryName}}</option>
+						</select>
 
 
-					<label>Course :</label>
-					<input type="text" name="course" class="form-control" ng-model="course" />
+					</br></br>
+
+					<label>Upload Shop Images :</label>
+					<input type = "file" file-model = "shopAvatar"  class="form-control" />
 
 
-					<label>Age :</label>
-					<input type="text" name="age" class="form-control" ng-model="age" />
 
-	                <label>Gender :</label>
-					<input type="text" name="gender" class="form-control" ng-model="gender" />
+					<label>Shop Name: </label>
+					<input type="text" name="shopName"	class="form-control" ng-model="shopName" />
 
 
-			     	<label>Address :</label>
-					<input type="text" name="addess"	class="form-control" ng-model="addess" />
+					<label>Shop Registaion No :</label>
+					<input type="text" name="shopReg" class="form-control" ng-model="shopReg" />
+
+			    	<label>Shop Email :</label>
+					<input type="text" name="shopEmail"	class="form-control" ng-model="shopEmail" />
+
+					<label>Shop Mobile :</label>
+					<input type="text" name="shopMobile" class="form-control" ng-model="shopMobile" />
+
+					<label>Shop Address :</label>
+					<input type="text" name="shopAddress" class="form-control" ng-model="shopAddress" />
+
+
+					<label>Shop Nearst :</label>
+					<input type="text" name="shopNearst" class="form-control" ng-model="shopNearst" />
+
+
+					<label>Shop Open Time :</label>
+					<input type="text" name="shopTime" class="form-control" ng-model="shopTime" />
+
+
+
+					<label>Shop Rating :</label>
+					<input type="text" name="shopRating" class="form-control" ng-model="shopRating" />
+
+
+
+					<label>Owner Name :</label>
+					<input type="text" name="ownerName" class="form-control" ng-model="ownerName" />
+
+
+
+					<label>Upload Owner Images :</label>
+					<input type = "file" file-model = "ownerAvatar"  class="form-control" />
+
+
+					<label>Owner Email :</label>
+					<input type="text" name="ownerEmail" class="form-control" ng-model="ownerEmail" />
+
+
+					<label>Owner Contact :</label>
+					<input type="text" name="ownerContact" class="form-control" ng-model="ownerContact" />
+
+	                <label>Shop Color Code :</label>
+					<input type="text" name="colorCode" class="form-control" ng-model="colorCode" />
 
 
 					<br>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-primary" ng-click="checkselection()">Submit</button>
 
 				</form>
-				<p>{{postResultMessage}}</p>
+			     <br />
+			     <span style="color:red">{{getResultMessage}}</span><br />
 
 			</div>
 		</div>
 
 
-		<div class="row">
+		<%--<div class="row">
 			<div ng-controller="getallcustomersController" class="col-md-3">
 				<h3>All Students</h3>
 
@@ -144,7 +181,7 @@
 				<p>{{getResultMessage}}</p>
 			</div>
 
-		</div>
+		</div>--%>
 	</div>
 </body>
 </html>

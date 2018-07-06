@@ -6,7 +6,6 @@ import com.pusauli.repository.RegisterShopRepository
 import com.pusauli.service.RegisterShopService
 import com.pusauli.utils.Constant
 import com.pusauli.utils.Constant.emptyArrays
-import com.sun.jmx.snmp.Timestamp
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -18,11 +17,7 @@ import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Calendar
-
-
 
 
 @Service("registerShopService")
@@ -35,7 +30,7 @@ class RegistarShopServiceImpl : RegisterShopService {
     private val regRepo: RegisterShopRepository? = null
 
 
-    override fun saveRegisterShop(shopId: String, shopName: String, shopReg: String, shopAvatar: MultipartFile,
+    override fun saveRegisterShop(categoryId :String,shopId: String, shopName: String, shopReg: String, shopAvatar: MultipartFile,
                                   shopEmail: String, shopMobile: String, shopAddress: String, shopNearst: String,
                                   shopTime: String, shopRating: String, shopLatitude: String, shopLongitude: String,
                                   ownerName: String, ownerEmail: String, ownerContact: String,
@@ -67,8 +62,8 @@ class RegistarShopServiceImpl : RegisterShopService {
             Files.write(path, bytes)
         } catch (e: IOException) { e.printStackTrace() }
 
-
-        regRepo!!.save(RegisterShopModel((Math.random()*10000).toInt(),shopId, shopName, shopReg, shopAvatarPath, shopEmail, shopMobile,
+        var randamValues=(Math.random()*10000).toInt()
+        regRepo!!.save(RegisterShopModel(randamValues,categoryId,shopId, shopName, shopReg, shopAvatarPath, shopEmail, shopMobile,
                 shopAddress, shopNearst, shopTime, shopRating, shopLatitude, shopLongitude, ownerName, ownerEmail,
                 ownerContact, ownerAvatarPath, colorCode, reg_date))
 

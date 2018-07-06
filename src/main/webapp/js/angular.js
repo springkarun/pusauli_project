@@ -1,6 +1,100 @@
 var app = angular.module('app', []);
 
 
+app.controller('shopRegisterController', function ($scope, $http, $location) {
+
+    $scope.showAllCustomers = false;
+    var url = $location.absUrl() + "api/categoryShopAll";
+        var config = {
+            headers : {
+                'Content-Type' : 'application/json;charset=utf-8;'
+            }
+        }
+
+        $http.get(url,config).then(function(response) {
+
+            if (response.data.status === true) {
+                $scope.arrlists =response.data.data;
+                $scope.showAllCustomers = true;
+            } else {
+                $scope.getResultMessage = "get All Customers Data Error!";
+            }
+
+        }, function(response) {
+            $scope.getResultMessage = response.data.mess;
+        });
+
+
+    $scope.checkselection = function () {
+
+        if ($scope.cateSelect !== "" && $scope.cateSelect !== undefined) {
+            $scope.getResultMessage = 'Selected Value: ' + $scope.cateSelect;
+
+
+            var url = $location.absUrl() + "api/register_shop";
+
+            var config = {
+                headers: {
+                    'Content-Type': multipart/form-data
+                }
+            }
+
+            var data = {
+
+                categoryId:$scope.cateSelect,
+                shopId:"vd343",
+                shopName: $scope.shopName,
+                shopReg: $scope.shopReg,
+                shopEmail: $scope.shopEmail,
+                shopMobile: $scope.shopMobile,
+                shopAddress: $scope.shopAddress,
+                shopNearst: $scope.shopNearst,
+                shopTime: $scope.shopTime,
+                shopRating: $scope.shopRating,
+                shopLatitude:"21.5555557",
+                shopLongitude:"12.585888",
+                ownerName: $scope.ownerName,
+                ownerEmail: $scope.ownerEmail,
+                ownerContact: $scope.ownerContact,
+                colorCode: $scope.colorCode,
+                reg_date:"12-02-2019"
+			};
+
+            $http.post(url, data, config).then(function (response) {
+                $scope.getResultMessage = response.data.mess;
+            }, function (response) {
+                $scope.getResultMessage = response.data.mess;
+            });
+        }
+        else
+      $scope.getResultMessage = 'Please Select Category';
+    }
+
+
+/*
+    $scope.arrlist = [{"userid": 1, "name": "Suresh"},
+		              {"userid": 2, "name": "Rohini"},
+		              {"userid": 3, "name": "Praveen"}];
+
+    $scope.checkselection = function () {
+        if ($scope.cateSelect !== "" && $scope.cateSelect !== undefined)
+            $scope.msg = 'Selected Value: '+$scope.cateSelect;
+        else
+            $scope.msg = 'Please Select Category';
+    }*/
+});
+
+
+
+
+
+
+
+
+
+
+
+
 /*(function () {
     'use strict';
 
@@ -70,6 +164,8 @@ app.controller('loginController', function($scope, $http, $location) {
 
 app.controller('postController', function($scope, $http, $location) {
 	$scope.submitForm = function(){
+
+
 		var url = $location.absUrl() + "api/student_registation";
 		
 		var config = {

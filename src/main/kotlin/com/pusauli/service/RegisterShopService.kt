@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile
 
 interface RegisterShopService {
 
-      fun saveRegisterShop(shopId :String, shopName :String, shopReg :String, shopAvatar: MultipartFile,
+      fun saveRegisterShop(categoryId :String,shopId :String, shopName :String, shopReg :String, shopAvatar: MultipartFile,
                            shopEmail :String, shopMobile :String, shopAddress :String,
                            shopNearst :String, shopTime :String, shopRating :String, shopLatitude :String,
                            shopLongitude :String, ownerName :String, ownerEmail :String, ownerContact :String,
