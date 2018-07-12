@@ -17,7 +17,7 @@
 	<div class="container" ng-app="app">
 		<h1>DIGITAL PUSAULI REGISTER </h1>
 
-		<div class="row">
+		<%--<div class="row">
 
 			<div ng-controller="shopRegisterController" class="col-md-3">
 
@@ -97,29 +97,42 @@
 			     <span style="color:red">{{getResultMessage}}</span><br />
 
 			</div>
-		</div>
+		</div>--%>
 
 
-		<%--<div class="row">
-			<div ng-controller="getallcustomersController" class="col-md-3">
-				<h3>All Students</h3>
+		<div class="row">
+			<div ng-controller="getAllShopController" class="col-md-3">
+				<h3>All SHOP</h3>
 
 				<button ng-click="getAllCustomers()">Get All Customers</button>
 
 				<div ng-show="showAllCustomers">
 					<ul class="list-group">
 						<li ng-repeat="s in allcustomers.data"><h4 class="list-group-item">
-								<strong>Students {{$index+1}}</strong><br />
+								<strong>Stop {{$index+1}}</strong><br />
 
-							Roll No: {{s.rollNo}}<br />
-							Full Name: {{s.name}}<br />
-							Email : {{s.email}}<br />
-							Mobile: {{s.mobile}}<br />
-							Course: {{s.course}}<br />
-							Age: {{s.age}}<br />
-							Gender: {{s.gender}}<br />
-							Address: {{s.addess}}<br />
+							<div>
+								<img alt="" ng-src="http://localhost:8080/api/images/{{s.shopAvatar}}" />
+								<img alt="" ng-src="http://localhost:8080/api/images/{{s.ownerContact}}" />
 
+							</div>
+
+							Category Id : {{s.categoryId}}<br />
+							Shop Id : {{s.shopId}}<br />
+							Shop Name: {{s.shopName}}<br />
+							Shop Reg : {{s.shopReg}}<br />
+							Shop Email : {{s.shopEmail}}<br />
+							Shop Mobile: {{s.shopMobile}}<br />
+							Shop Address: {{s.shopAddress}}<br />
+							Shop Nearst: {{s.shopNearst}}<br />
+							Shop Open Time: {{s.shopTime}}<br />
+							Shop Rating: {{s.shopRating}}<br />
+
+
+							Owner Name: {{s.ownerName}}<br />
+							Owner Contact: {{s.ownerContact}}<br />
+							Owner Email: {{s.ownerEmail}}<br />
+							Reg Date: {{s.reg_date}}<br />
 
 						</h4> </li>
 					</ul>
@@ -128,7 +141,7 @@
 
 			</div>
 
-			<div ng-controller="getcustomerControllerrollNo" class="col-md-3">
+		<%--	<div ng-controller="getcustomerControllerrollNo" class="col-md-3">
 				<h3>Student by Roll No</h3>
 
 				<input type="text" class="form-control" style="width: 100px;"
@@ -180,8 +193,8 @@
 				</div>
 				<p>{{getResultMessage}}</p>
 			</div>
-
-		</div>--%>
+--%>
+		</div>
 	</div>
 </body>
 </html>

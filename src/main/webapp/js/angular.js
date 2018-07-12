@@ -206,18 +206,18 @@ app.controller('postController', function($scope, $http, $location) {
 	}
 });
 
-app.controller('getallcustomersController', function($scope, $http, $location) {
+app.controller('getAllShopController', function($scope, $http, $location) {
 	
 	$scope.showAllCustomers = false;
 
 	$scope.getAllCustomers = function() {
-		var url = $location.absUrl() + "api/showAllStudent";
+		var url = $location.absUrl() + "api/showAllShop";
 
 		var config = {
 			headers : {
 				'Content-Type' : 'application/json;charset=utf-8;'
 			}
-		}
+		};
 
        $http.get(url,config).then(function(response) {
 
@@ -231,7 +231,7 @@ app.controller('getallcustomersController', function($scope, $http, $location) {
 			}
 
 		}, function(response) {
-			$scope.getResultMessage = "Fail!";
+           $scope.getResultMessage = response.data.mess;
 		});
 
 	}

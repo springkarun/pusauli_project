@@ -18,6 +18,8 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 @Service("registerShopService")
@@ -30,11 +32,14 @@ class RegistarShopServiceImpl : RegisterShopService {
     private val regRepo: RegisterShopRepository? = null
 
 
-    override fun saveRegisterShop(categoryId :String,shopId: String, shopName: String, shopReg: String, shopAvatar: MultipartFile,
+
+
+
+    override fun saveRegisterShop(categoryId :String, shopName: String, shopReg: String, shopAvatar: MultipartFile,
                                   shopEmail: String, shopMobile: String, shopAddress: String, shopNearst: String,
                                   shopTime: String, shopRating: String, shopLatitude: String, shopLongitude: String,
                                   ownerName: String, ownerEmail: String, ownerContact: String,
-                                  ownerAvatar: MultipartFile, colorCode: String, reg_date: String): Any {
+                                  ownerAvatar: MultipartFile, colorCode: String): Any {
 
         if (shopAvatar.isEmpty) {
             return ResponseEntity(ResponseModel(false, Constant.shopAvatar, emptyArrays), Constant.NOT_FOUND)
@@ -62,12 +67,17 @@ class RegistarShopServiceImpl : RegisterShopService {
             Files.write(path, bytes)
         } catch (e: IOException) { e.printStackTrace() }
 
-        var randamValues=(Math.random()*10000).toInt()
+        val randamValues=(Math.random()*10000).toInt()
+        val shopId=categoryId+(Math.random()*10).toInt()
+
         regRepo!!.save(RegisterShopModel(randamValues,categoryId,shopId, shopName, shopReg, shopAvatarPath, shopEmail, shopMobile,
                 shopAddress, shopNearst, shopTime, shopRating, shopLatitude, shopLongitude, ownerName, ownerEmail,
-                ownerContact, ownerAvatarPath, colorCode, reg_date))
+                ownerContact, ownerAvatarPath, colorCode, timestamp))
 
-        val res = regRepo.findAll()
+        val res = ArrayList<HashMap<String,String>>()
+        val hm=HashMap<String,String>()
+        hm.put("shopId",shopId)
+        res.add(hm)
         return ResponseEntity(ResponseModel(true, Constant.regOK, res), Constant.CREATED)
 
     }

@@ -27,7 +27,7 @@ data class RegisterShopModel(
         var ownerAvatar:String? = null,
         var ownerContact:String? = null,
         var colorCode:String? = null,
-        var reg_date:String? = null
+        var reg_timeStamp:String? = null
 ):Serializable
 
 

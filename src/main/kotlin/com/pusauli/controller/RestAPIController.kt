@@ -44,7 +44,6 @@ class RestAPIController {
 
     @PostMapping("/register_shop")
     private fun saveRegisterShop(@RequestParam("categoryId")categoryId :String,
-                                 @RequestParam("shopId") shopId :String,
                                  @RequestParam("shopName") shopName :String,
                                  @RequestParam("shopReg") shopReg :String,
                                  @RequestParam("shopAvatar") shopAvatar: MultipartFile,
@@ -60,11 +59,10 @@ class RestAPIController {
                                  @RequestParam("ownerEmail") ownerEmail :String,
                                  @RequestParam("ownerContact") ownerContact :String,
                                  @RequestParam("ownerAvatar") ownerAvatar :MultipartFile,
-                                 @RequestParam("colorCode") colorCode :String,
-                                 @RequestParam("reg_date") reg_date :String): Any {
-        return registerShopService!!.saveRegisterShop(categoryId,shopId, shopName, shopReg, shopAvatar, shopEmail, shopMobile,
+                                 @RequestParam("colorCode") colorCode :String): Any {
+        return registerShopService!!.saveRegisterShop(categoryId, shopName, shopReg, shopAvatar, shopEmail, shopMobile,
                 shopAddress, shopNearst, shopTime, shopRating, shopLatitude, shopLongitude, ownerName, ownerEmail,
-                ownerContact, ownerAvatar, colorCode, reg_date)
+                ownerContact, ownerAvatar, colorCode)
     }
 
 

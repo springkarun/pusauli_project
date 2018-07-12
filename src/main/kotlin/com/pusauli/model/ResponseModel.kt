@@ -1,4 +1,4 @@
 package com.pusauli.model
 
 
-data class ResponseModel(val status: Boolean,val mess: String, val data: Any)
+data class ResponseModel(val status: Boolean,val message: String, val data: Any)
